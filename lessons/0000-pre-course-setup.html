@@ -113,16 +113,47 @@
   <li><strong>Stuck?</strong>: Bring your laptop to class 10 minutes early. We'll get you sorted.</li>
 </ul>
 
-<h2>One more thing: know how to open a folder</h2>
-<p>You'll navigate to project folders in your terminal. Here's all you need:</p>
+<h2>Meet your terminal (never used one? start here)</h2>
+<p>The <strong>terminal</strong> is the window you just installed things in. It lets you type instructions to your computer as text instead of clicking buttons. Each instruction is called a <strong>command</strong>: you type it, press <kbd>Enter</kbd>, and the computer does it.</p>
 
-<pre><code># Windows (Terminal):
-cd C:\Users\YourName\Documents\my-project
+<p>You do not need to become a terminal expert. For this entire course you only need three commands, and they are always the same three.</p>
 
-# Mac (Terminal):
-cd ~/Documents/my-project</code></pre>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>mkdir</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Make a folder.</strong> Short for "make directory." A directory is just another word for a folder.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Go into a folder.</strong> Short for "change directory." This is how you move to where your project lives.</td>
+  </tr>
+  <tr>
+    <td style="padding:0.5rem; vertical-align:top;"><code>copilot</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Start Copilot.</strong> Launches your AI building partner inside whatever folder you are currently in.</td>
+  </tr>
+</table>
 
-<p>That's it! The Copilot CLI handles everything else: creating files, editing them, even running commands for you.</p>
+<p>The <code>~</code> symbol (a tilde) is a shortcut that means <strong>your home folder</strong>, the one with your name on it. It works the same on Windows and Mac, so you never have to type your full username.</p>
+
+<h3>Try it now: make a practice folder</h3>
+<p>Open your terminal and type these three lines, pressing <kbd>Enter</kbd> after each one:</p>
+
+<pre><code>mkdir ~/Documents/practice
+cd ~/Documents/practice
+ls</code></pre>
+
+<p>That created a folder called <code>practice</code>, moved you into it, then listed what is inside (nothing yet, which is correct). If you got no error, you just used the terminal. That is genuinely all you need.</p>
+
+<p>Two more <code>cd</code> tricks worth knowing. <code>cd ..</code> moves you <strong>up</strong> one folder (the two dots mean "the folder above me"), and <code>cd ~</code> jumps you straight back <strong>home</strong> from anywhere if you get lost.</p>
+
+<div class="callout callout-tip">
+  <strong>Type it exactly, then press Enter</strong>
+  Spelling and spaces matter. If a command does not work, check for typos and try again. You cannot break your computer with these commands, so experiment freely.
+</div>
+
+<p>The Copilot CLI handles everything else for you: creating files, editing them, even running other commands. It always shows you what it wants to do and asks first.</p>
+
+<p>Keep the <a href="../reference/terminal-basics.html">Terminal Basics reference card</a> open in another tab for the first few weeks. It fits on one page.</p>
 
 <div class="ask-teacher">
   💬 <strong>Can't figure something out?</strong> Don't stress. Bring your laptop to the first class and we'll help you get set up. The important thing is that you tried.

@@ -71,6 +71,17 @@ pre code {
   line-height: 1.5;
 }
 
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  white-space: nowrap;
+}
+
 blockquote {
   border-left: 3px solid var(--color-accent);
   padding-left: 1rem;

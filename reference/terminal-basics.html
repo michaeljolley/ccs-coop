@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference: Terminal Basics</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Terminal Basics</h1>
+
+<p><em>Everything you need to know about the terminal for this whole course fits on this page. You will not become a terminal expert, and you do not need to. You only need a few commands.</em></p>
+
+<h2>What is the terminal?</h2>
+<p>The <strong>terminal</strong> is a window where you type instructions to your computer as text, instead of clicking buttons. Each instruction you type is called a <strong>command</strong>. You type a command, press <kbd>Enter</kbd>, and the computer does it.</p>
+
+<p>That is the whole idea. Type words, press Enter, something happens. If nothing looks broken, it worked.</p>
+
+<div class="callout callout-tip">
+  <strong>The golden rule</strong>
+  Type the command exactly as shown, then press <kbd>Enter</kbd>. Spelling and spaces matter. The terminal is picky, and that is normal.
+</div>
+
+<h2>Folders have another name: directories</h2>
+<p>On your computer, files live inside <strong>folders</strong>. In the terminal, a folder is called a <strong>directory</strong>. Same thing, different word. When you see "directory," think "folder."</p>
+
+<p>At any moment, the terminal is "standing inside" one folder. That is your <strong>current folder</strong>. Commands act on wherever you currently are, so knowing where you are matters.</p>
+
+<h2>The only commands you need</h2>
+
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd</code></td>
+    <td style="padding:0.5rem; vertical-align:top;">
+      <strong>Change directory.</strong> Move into a folder.<br>
+      <code>cd ~/Documents/my-game</code> moves you into the <code>my-game</code> folder.
+    </td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>mkdir</code></td>
+    <td style="padding:0.5rem; vertical-align:top;">
+      <strong>Make directory.</strong> Create a new folder.<br>
+      <code>mkdir ~/Documents/my-game</code> creates a folder named <code>my-game</code>.
+    </td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>ls</code></td>
+    <td style="padding:0.5rem; vertical-align:top;">
+      <strong>List.</strong> Show what is inside your current folder.<br>
+      Type <code>ls</code> and press Enter to see the files and folders around you.
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:0.5rem; vertical-align:top;"><code>copilot</code></td>
+    <td style="padding:0.5rem; vertical-align:top;">
+      <strong>Start Copilot.</strong> Launch your AI building partner in the current folder.<br>
+      Always run <code>cd</code> into your project folder first, then type <code>copilot</code>.
+    </td>
+  </tr>
+</table>
+
+<h2>What is the <code>~</code> symbol?</h2>
+<p>The squiggle <code>~</code> (called a tilde) is a shortcut that means <strong>your home folder</strong>: the folder with your name on it where your Documents, Downloads, and Desktop live. It works the same on Windows and Mac.</p>
+
+<p>So <code>~/Documents/my-game</code> just means "the my-game folder, inside Documents, inside your home folder." You do not have to type your full username every time.</p>
+
+<h2>Moving around with <code>cd</code></h2>
+<p>Folders are nested inside other folders, like boxes inside boxes. <code>cd</code> is how you move between them. You can move down into a folder, or back up out of one.</p>
+
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd my-game</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Go down</strong> into the <code>my-game</code> folder that is inside where you are now.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd ..</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Go up</strong> one level, out to the folder that contains you. The two dots mean "the folder above me."</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd ../..</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Go up two</strong> levels at once. Add another <code>/..</code> for each level you want to climb.</td>
+  </tr>
+  <tr>
+    <td style="padding:0.5rem; vertical-align:top;"><code>cd ~</code></td>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Go home.</strong> Jump straight back to your home folder from anywhere. A safe reset button.</td>
+  </tr>
+</table>
+
+<p>Lost? Run <code>ls</code> to see what is around you, or <code>cd ~</code> to start over from home. You can always find your way back.</p>
+
+<h2>The pattern you will use every week</h2>
+<p>Every project in this course starts the same three-step way:</p>
+
+<pre><code>mkdir ~/Documents/my-game
+cd ~/Documents/my-game
+copilot</code></pre>
+
+<p>In plain English, that is:</p>
+<ol>
+  <li><strong>Make</strong> a new folder for the project (<code>mkdir</code>).</li>
+  <li><strong>Move</strong> into that folder (<code>cd</code>).</li>
+  <li><strong>Start</strong> Copilot there (<code>copilot</code>).</li>
+</ol>
+
+<p>After the first week, when you come back to a project you already made, you skip step 1. You only <code>cd</code> into it and start <code>copilot</code>.</p>
+
+<div class="callout callout-warning">
+  <strong>Common mix-ups</strong>
+  <ul style="margin-top:0.5rem;">
+    <li><strong>"The system cannot find the path"</strong>: the folder name is misspelled, or you have not created it yet with <code>mkdir</code>.</li>
+    <li><strong>Nothing happens after typing</strong>: you probably forgot to press <kbd>Enter</kbd>.</li>
+    <li><strong>"copilot is not recognized"</strong>: close and reopen the terminal, or revisit the setup guide.</li>
+  </ul>
+</div>
+
+<div class="callout callout-tip">
+  <strong>You cannot break your computer by typing these</strong>
+  <code>cd</code>, <code>mkdir</code>, and <code>ls</code> are safe. The worst that happens is an error message, which just means "try again." Copilot will never run a command without showing you first and asking.
+</div>
+
+<div class="ask-teacher">
+  💬 <strong>Confused by a command?</strong> Ask your instructor, or ask Copilot itself: "What does <code>cd</code> do?" It is happy to explain.
+</div>
+
+<p style="margin-top:2rem;"><a href="../index.html">← Back to course home</a> &nbsp; | &nbsp; <a href="glossary.html">Glossary →</a></p>
+
+</body>
+</html>
