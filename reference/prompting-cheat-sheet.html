@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference: Prompting Copilot Cheat Sheet</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Prompting Copilot Cheat Sheet</h1>
+
+<p><em>Quick reference for writing effective prompts. Print this out or keep it open while you work.</em></p>
+
+<h2>The Prompt Formula</h2>
+<pre><code>[Action] + [What] + [Details] + [Format/Constraints]</code></pre>
+
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">Part</th>
+      <th style="padding:0.5rem;">Purpose</th>
+      <th style="padding:0.5rem;">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Action</strong></td>
+      <td style="padding:0.5rem;">What Copilot should do</td>
+      <td style="padding:0.5rem;">Create, Fix, Add, Explain, Refactor</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>What</strong></td>
+      <td style="padding:0.5rem;">The thing you're building/changing</td>
+      <td style="padding:0.5rem;">a tic-tac-toe game, a timer function</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Details</strong></td>
+      <td style="padding:0.5rem;">Specific behavior and features</td>
+      <td style="padding:0.5rem;">that tracks score, with a reset button</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;"><strong>Format</strong></td>
+      <td style="padding:0.5rem;">Technical constraints</td>
+      <td style="padding:0.5rem;">in a single HTML file, using CSS grid</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Good Prompts vs Bad Prompts</h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0;">
+  <div style="background:#ffebe9; padding:1rem; border-radius:8px;">
+    <strong>❌ Bad</strong>
+    <p style="font-size:0.85rem;">"make a game"</p>
+    <p style="font-size:0.85rem;">"fix it"</p>
+    <p style="font-size:0.85rem;">"make it look better"</p>
+  </div>
+  <div style="background:#dafbe1; padding:1rem; border-radius:8px;">
+    <strong>✓ Good</strong>
+    <p style="font-size:0.85rem;">"Create a memory-match card game in a single HTML file with a 4x4 grid"</p>
+    <p style="font-size:0.85rem;">"The timer doesn't stop when it reaches zero, so add a check that stops the interval"</p>
+    <p style="font-size:0.85rem;">"Change the background to a dark theme with white text and blue accents"</p>
+  </div>
+</div>
+
+<h2>Useful Prompt Starters</h2>
+<ul>
+  <li><strong>Building:</strong> "Create a [thing] that [behavior] in a single HTML file"</li>
+  <li><strong>Adding features:</strong> "Add [feature] to my existing code. It should [behavior]"</li>
+  <li><strong>Fixing bugs:</strong> "I expected [X] but got [Y]. Here's the code: [paste]. Fix it."</li>
+  <li><strong>Understanding:</strong> "Explain what this code does line by line: [paste]"</li>
+  <li><strong>Styling:</strong> "Restyle this to look [modern/minimal/colorful/dark] with [specific details]"</li>
+  <li><strong>Iteration:</strong> "This works, but now I want to also [new requirement]"</li>
+</ul>
+
+<h2>The Debugging Formula</h2>
+<pre><code>1. What I expected: [describe expected behavior]
+2. What actually happens: [describe actual behavior]  
+3. Here's the relevant code: [paste it]
+4. How do I fix this?</code></pre>
+
+<h2>When Copilot Gets It Wrong</h2>
+<ol>
+  <li><strong>Be more specific</strong>: add details you left out</li>
+  <li><strong>Show it the error</strong>: paste error messages directly</li>
+  <li><strong>Ask for a simpler version</strong>: "Start with just [core feature], nothing else"</li>
+  <li><strong>Try a different approach</strong>: "Instead of [X], try using [Y]"</li>
+  <li><strong>Start fresh</strong>: "Let's start over. New approach: [describe]"</li>
+</ol>
+
+<h2>Copilot CLI Commands</h2>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><code>copilot</code></td>
+    <td style="padding:0.4rem;">Start an interactive Copilot session (run from your project folder)</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><code>/login</code></td>
+    <td style="padding:0.4rem;">Sign in to GitHub (first launch only)</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><code>/</code></td>
+    <td style="padding:0.4rem;">See all available slash commands</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><code>@filename</code></td>
+    <td style="padding:0.4rem;">Point Copilot at a specific file in your prompt</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><kbd>Ctrl+R</kbd></td>
+    <td style="padding:0.4rem;">View logs of commands Copilot ran for you</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.4rem;"><code>cd ~/Documents/project</code></td>
+    <td style="padding:0.4rem;">Navigate to your project folder (run before <code>copilot</code>)</td>
+  </tr>
+  <tr>
+    <td style="padding:0.4rem;">"Deploy this to GitHub Pages..."</td>
+    <td style="padding:0.4rem;">Just ask; Copilot runs the git commands for you</td>
+  </tr>
+</table>
+
+</body>
+</html>

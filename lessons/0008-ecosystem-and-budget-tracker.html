@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 8: The Ecosystem + Finish Budget Tracker</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 8: The Full Ecosystem + Finish Budget Tracker</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>8 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>How all the pieces fit together</dd>
+  <dt>Build:</dt><dd>Polish budget tracker, add final features</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: Putting It All Together (~30 minutes)</h2>
+
+<h3>The full picture</h3>
+<p>Over the past 7 weeks, you've learned five key concepts. Today we connect them into one mental model.</p>
+
+<div style="background:var(--color-code-bg); border:1px solid var(--color-border); border-radius:8px; padding:1.5rem; margin:1rem 0; font-family:var(--font-mono); font-size:0.85rem; line-height:2;">
+  <strong>You</strong> (the human, the one with the goal)<br>
+  &nbsp;&nbsp;↓ gives instructions to<br>
+  <strong>Agent</strong> (an LLM that can take actions in a loop)<br>
+  &nbsp;&nbsp;↓ uses its brain:<br>
+  <strong>LLM / Model</strong> (predicts text, reasons about code)<br>
+  &nbsp;&nbsp;↓ connects to the world via:<br>
+  <strong>MCP</strong> (universal adapter to external tools & data)<br>
+  &nbsp;&nbsp;↓ knows how to do specific things via:<br>
+  <strong>Skills</strong> (packaged capabilities and instructions)<br>
+  &nbsp;&nbsp;↓ reacts to events automatically via:<br>
+  <strong>Hooks</strong> (triggers that fire when something happens)
+</div>
+
+<h3>A real-world scenario</h3>
+<p>Let's trace how all these work together in a real workflow:</p>
+
+<blockquote>
+  You tell the Copilot <strong>agent</strong>: "Add a dark mode to my budget tracker."<br><br>
+  The agent's <strong>LLM</strong> reads your code (context) and predicts what CSS changes to make.<br><br>
+  It uses a <strong>skill</strong> that knows your project's coding standards and design patterns.<br><br>
+  It connects via <strong>MCP</strong> to a tool that runs your code in a preview browser to check if it looks right.<br><br>
+  A <strong>hook</strong> automatically runs when it saves the file, formatting the code and checking for errors.<br><br>
+  You review and approve. Done.
+</blockquote>
+
+<h3>What you can do NOW vs what's coming</h3>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">You can do today</th>
+      <th style="padding:0.5rem;">Coming soon / advanced</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">Use the Copilot CLI to build and iterate</td>
+      <td style="padding:0.5rem;">Build custom agents for specific workflows</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">Call APIs from your JavaScript apps</td>
+      <td style="padding:0.5rem;">Build your own MCP server</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">Write good prompts and verify output</td>
+      <td style="padding:0.5rem;">Create custom skills for your team</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;">Use event listeners (hooks in your code)</td>
+      <td style="padding:0.5rem;">Set up CI/CD hooks for automated deployment</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Class discussion</h3>
+<p>Let's discuss as a class:</p>
+<ul>
+  <li>Which of these 5 concepts felt most useful to you personally?</li>
+  <li>Can you imagine a scenario in your life where an agent + MCP + skill would save you time?</li>
+  <li>What's one thing you'd want to build next that you couldn't have built 8 weeks ago?</li>
+</ul>
+
+<div class="quiz" data-answer="3">
+  <p class="quiz-question">Put these in order from most fundamental to most specific: Agent, Hook, LLM, MCP, Skill</p>
+  <span class="quiz-option">Hook → Skill → MCP → Agent → LLM            </span>
+  <span class="quiz-option">Agent → LLM → Hook → Skill → MCP            </span>
+  <span class="quiz-option">MCP → Skill → Agent → LLM → Hook            </span>
+  <span class="quiz-option">LLM → Agent → MCP → Skill → Hook            </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Final Polish (~30 minutes)</h2>
+
+<p>Use this time to make your budget tracker (and any previous project) portfolio-ready. Next week is your wildcard project, so let's make sure your existing work is solid.</p>
+
+<h3>Budget tracker finishes</h3>
+<ul>
+  <li>Fix any remaining bugs</li>
+  <li>Add one polish feature: dark mode, animations, export to CSV</li>
+  <li>Make sure it looks good on mobile</li>
+</ul>
+
+<h3>Portfolio check</h3>
+<p>You should now have 3-4 deployed projects on GitHub Pages:</p>
+<ul>
+  <li>☐ Your game: working and deployed</li>
+  <li>☐ Study timer: working and deployed</li>
+  <li>☐ Weather dashboard: working and deployed</li>
+  <li>☐ Budget tracker: working and deployed</li>
+</ul>
+<p>If any are missing or broken, use this time to fix them. These are <em>yours</em>: live on the internet, proof that you can build things.</p>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Think about your wildcard project</strong>: what do YOU want to build? Anything goes (as long as it's a web app). Come to class next week with an idea.</li>
+  <li><strong>Share your portfolio</strong>: show someone all four apps. You built these!</li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week is YOUR week: bring an idea for your wildcard project. Anything you want to build.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0007-hooks-and-budget-tracker.html">← Previous: Hooks</a>
+  <a href="0009-ethics-and-wildcard.html">Next: Ethics + Your Wildcard →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

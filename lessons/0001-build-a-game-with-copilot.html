@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: What is an LLM? + Build a Game</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 1: What is an LLM? + Build a Game</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>1 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>What is an LLM? What are models?</dd>
+  <dt>Build:</dt><dd>A playable game using Copilot</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: What is an LLM? (~30 minutes)</h2>
+
+<h3>The Big Question</h3>
+<p>You're about to use GitHub Copilot to build a game. But what IS Copilot, actually? It's not magic. Copilot is a <strong>tool powered by a Large Language Model</strong> (LLM). The LLM is the AI engine that actually generates the code; Copilot wraps that engine with the ability to read your files, run commands, and work inside your terminal. So when we ask "how does Copilot come up with code?", we're really asking how an LLM works. Understanding that will make you dramatically better at using it.</p>
+
+<h3>An LLM is a next-word predictor</h3>
+<p>At its core, an LLM does one thing: given some text, it predicts <strong>what comes next</strong>. That's it. It's done this prediction so many times, with so much text, that it appears to "understand," but it's fundamentally a very sophisticated autocomplete.</p>
+
+<div class="callout callout-try">
+  <strong>🧠 Think about it</strong>
+  When you text a friend and your phone suggests the next word, that's the same basic idea, just at a much smaller scale. An LLM is your phone's autocomplete trained on essentially the entire internet.
+</div>
+
+<h3>What is a "model"?</h3>
+<p>A <strong>model</strong> is one specific version of this trained system. Different models have different strengths:</p>
+<ul>
+  <li><strong>Bigger models</strong>: slower, more capable, better at complex reasoning</li>
+  <li><strong>Smaller models</strong>: faster, cheaper, good enough for straightforward tasks</li>
+  <li><strong>Specialized models</strong>: trained specifically for code, or images, or conversation</li>
+</ul>
+<p>GitHub Copilot uses code-specialized models. That's why it's better at writing JavaScript than writing poetry.</p>
+
+<h3>Key takeaways</h3>
+<ul>
+  <li>An LLM predicts text; it doesn't "think" the way you do</li>
+  <li>It was trained on enormous amounts of human-written code and text</li>
+  <li>It's <em>very good</em> at patterns it has seen many times before</li>
+  <li>It can be <em>confidently wrong</em> about things it hasn't seen much (more on this in Week 3)</li>
+  <li>YOUR job is to give it good input and verify its output</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Why this matters for today</strong>
+  When you write a prompt to Copilot, you're giving the LLM text to predict from. The clearer and more specific your text, the better its predictions. You're not "asking." You're <em>steering</em>.
+</div>
+
+<div class="quiz" data-answer="1">
+  <p class="quiz-question">What does an LLM fundamentally do?</p>
+  <span class="quiz-option">Searches the internet for answers     </span>
+  <span class="quiz-option">Predicts what text should come next    </span>
+  <span class="quiz-option">Copies code from other people's projects</span>
+  <span class="quiz-option">Runs your code and fixes any errors    </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <p class="quiz-question">Why is GitHub Copilot especially good at writing code?</p>
+  <span class="quiz-option">It was built by professional programmers         </span>
+  <span class="quiz-option">It connects to a database of correct solutions   </span>
+  <span class="quiz-option">Its model was trained specifically on code        </span>
+  <span class="quiz-option">It executes code and learns from the results     </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Build a Game (~30 minutes)</h2>
+
+<p>Now that you know what's behind the curtain, let's put it to work. You're going to <strong>steer</strong> the LLM to build you a playable game.</p>
+
+<h3>Pick your game (2 min)</h3>
+<p>Choose a classic game to build. Pick whatever sounds most fun:</p>
+<ul>
+  <li><strong>Tic-Tac-Toe</strong>: Two players, take turns, check for a winner</li>
+  <li><strong>Snake</strong>: Move around, eat food, grow longer</li>
+  <li><strong>Connect 4</strong>: Drop pieces, get four in a row</li>
+  <li><strong>Memory Match</strong>: Flip cards, find matching pairs</li>
+  <li><strong>Something else?</strong>: Ask your instructor</li>
+</ul>
+
+<div class="callout callout-warning">
+  <strong>⚠️ Scope check</strong>
+  Pick a game with rules you can explain in 2-3 sentences. Simple rules = better predictions from the LLM.
+</div>
+
+<h3>Set up your project folder (2 min)</h3>
+<p>Open your terminal and create a folder for your game:</p>
+
+<pre><code># Windows (Terminal):
+mkdir ~/Documents/my-game
+cd ~/Documents/my-game
+
+# Mac (Terminal):
+mkdir ~/Documents/my-game
+cd ~/Documents/my-game</code></pre>
+
+<h3>Write your first prompt (5 min)</h3>
+<p>Now talk to Copilot. Type this in your terminal to start a session:</p>
+
+<pre><code>copilot</code></pre>
+
+<p>Copilot greets you in the terminal. Now describe your game clearly and specifically:</p>
+
+<pre><code>Create a tic-tac-toe game in a single HTML file called index.html. It should:
+- Display a 3x3 grid
+- Let two players take turns clicking squares (X and O)
+- Detect when someone wins or it's a draw
+- Show a message saying who won
+- Have a "Play Again" button
+- Look clean and modern with CSS styling</code></pre>
+
+<p>Remember: you're <strong>steering a next-word predictor</strong>. The more specific your description, the better its predictions will be.</p>
+
+<div class="callout callout-tip">
+  <strong>💡 Tip: Copilot asks before it acts</strong>
+  The Copilot CLI will show you what it plans to do and may ask for permission before creating or editing files. Read what it's about to do, then approve it. Type <code>/</code> anytime to see available commands.
+</div>
+
+<h3>Run it and iterate (20 min)</h3>
+<ol>
+  <li>Copilot will create <code>index.html</code> directly in your folder</li>
+  <li>Open it in your browser (double-click the file, or drag it into a browser window)</li>
+  <li>Play it. What works? What doesn't?</li>
+  <li>Back in the terminal, tell Copilot what to fix:
+    <pre><code>The game works, but when I click a square that's already taken, it lets me 
+overwrite it. Fix that. Also make the grid bigger and add hover effects.</code></pre>
+  </li>
+  <li>Refresh your browser to see the changes. Repeat!</li>
+</ol>
+
+<div class="callout callout-tip">
+  <strong>💡 Connect to the concept</strong>
+  Notice how Copilot is great at common patterns (a tic-tac-toe grid, a game loop) but might struggle with unusual requests. That's because the LLM has seen thousands of tic-tac-toe implementations in its training data, so it's predicting based on what it's seen before.
+</div>
+
+<h3>Wrap-up (3 min)</h3>
+<p>Show a neighbor your game. Did yours turn out differently than theirs? Same LLM, different prompts, different results, and that's the power of good steering.</p>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Polish your game</strong>: add one more feature using Copilot</li>
+  <li><strong>Try breaking it</strong>: delete some code, then ask Copilot to help fix it</li>
+  <li><strong>Reflect:</strong> When did Copilot seem "smart"? When did it seem "dumb"? (Hint: it's neither; it's predicting.)</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>📖 Want to go deeper?</strong>
+  Watch: <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">How Large Language Models Work (3Blue1Brown)</a>: a visual, beginner-friendly explanation of how LLMs actually work under the hood.
+</div>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Ask your instructor anything. You can also ask Copilot: "Explain what this code does." Remember, it's just predicting helpful text in response to your question.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0000-pre-course-setup.html">← Setup Guide</a>
+  <a href="0002-deploy-and-polish-your-game.html">Next: Prompting &amp; Context + Deploy Your Game →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

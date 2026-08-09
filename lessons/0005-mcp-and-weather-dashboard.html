@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: MCP + Build a Weather Dashboard</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 5: MCP + Build a Weather Dashboard</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>5 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>Model Context Protocol (MCP): connecting AI to external tools</dd>
+  <dt>Build:</dt><dd>A weather dashboard that fetches real data from an API</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: MCP, the Model Context Protocol (~30 minutes)</h2>
+
+<h3>The problem MCP solves</h3>
+<p>So far, Copilot has only known what's in your files and your chat messages. But what if it needs to:</p>
+<ul>
+  <li>Look up today's weather?</li>
+  <li>Check your calendar?</li>
+  <li>Query a database?</li>
+  <li>Read documentation from the web?</li>
+</ul>
+
+<p>An LLM by itself can't do any of these. It's a text predictor trapped in a box. <strong>MCP</strong> is the door out of that box.</p>
+
+<h3>What is MCP?</h3>
+<p><strong>Model Context Protocol</strong> is a standard way to connect AI models to external <strong>tools</strong> and <strong>data sources</strong>. Think of it as a universal adapter:</p>
+
+<ul>
+  <li>The AI says: "I need weather data for Chicago"</li>
+  <li>MCP routes that request to a weather tool</li>
+  <li>The tool fetches real data and sends it back</li>
+  <li>The AI uses that data in its response</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Analogy</strong>
+  You know how your phone can connect to Bluetooth speakers, car systems, headphones, all different devices, one standard protocol? MCP is Bluetooth for AI tools. One standard way to plug in any data source.
+</div>
+
+<h3>MCP in the ecosystem</h3>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">Without MCP</th>
+      <th style="padding:0.5rem;">With MCP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">AI only knows what's in its training data</td>
+      <td style="padding:0.5rem;">AI can access live, real-time information</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">Every tool needs custom integration</td>
+      <td style="padding:0.5rem;">One standard protocol for all tools</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;">AI hallucinates facts it doesn't have</td>
+      <td style="padding:0.5rem;">AI can look up facts before responding</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>How this connects to what you're building</h3>
+<p>Today you'll build a weather app that <strong>fetches real data from an API</strong>. This is the same fundamental pattern MCP uses. Your code reaches outside itself to get live information. The difference is:</p>
+<ul>
+  <li><strong>Your app</strong> calls an API using JavaScript (<code>fetch()</code>)</li>
+  <li><strong>An MCP tool</strong> does the same thing, but on behalf of the AI</li>
+</ul>
+<p>Same concept, different user. Today you're the one calling the API. With MCP, the AI makes that call for you.</p>
+
+<div class="quiz" data-answer="1">
+  <p class="quiz-question">What problem does MCP solve?</p>
+  <span class="quiz-option">Makes LLMs generate code faster                    </span>
+  <span class="quiz-option">Connects AI to external tools and live data         </span>
+  <span class="quiz-option">Prevents hallucinations from ever occurring         </span>
+  <span class="quiz-option">Replaces the need for programming languages         </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <p class="quiz-question">MCP is best compared to:</p>
+  <span class="quiz-option">A programming language that AI uses internally      </span>
+  <span class="quiz-option">A firewall that protects AI from bad data           </span>
+  <span class="quiz-option">A universal adapter connecting AI to any tool        </span>
+  <span class="quiz-option">A search engine built into every LLM                </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="callout callout-tip">
+  <strong>💡 You're already using MCP!</strong>
+  Remember how you deployed by just asking Copilot to "create a repo and enable Pages"? The Copilot CLI did that using its <strong>built-in GitHub MCP server</strong>, an MCP tool that connects it to GitHub. When you asked, Copilot used that tool to create your repository. That's MCP working for you right now, in the tool you use every class.
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Build a Weather Dashboard (~30 minutes)</h2>
+
+<p>Your first app that reaches <strong>outside itself</strong> for data. You'll use a free weather API, no signup or credit card needed.</p>
+
+<h3>The API</h3>
+<p>We'll use <a href="https://open-meteo.com/">Open-Meteo</a>, a free, no-key-required weather API. It returns real weather data in JSON format.</p>
+
+<h3>Your prompt</h3>
+<p>Set up a new project and start a Copilot session:</p>
+<pre><code>mkdir ~/Documents/weather-app
+cd ~/Documents/weather-app
+copilot</code></pre>
+
+<p>Then describe your dashboard:</p>
+<pre><code>Create a weather dashboard in a single HTML file called index.html using 
+the Open-Meteo API (https://api.open-meteo.com/v1/forecast). It should:
+- Have a search box where I type a city name
+- Use the Open-Meteo geocoding API to find the city's coordinates
+- Fetch current weather (temperature, wind speed, weather condition)
+- Show a 5-day forecast with high/low temps
+- Display weather icons or emoji based on conditions
+- Handle errors gracefully (city not found, network issues)
+- Modern, clean styling with a blue gradient header</code></pre>
+
+<h3>What's new here</h3>
+<p>This app introduces <strong>asynchronous code</strong>: your app sends a request, waits for a response, then displays it. This is the <code>fetch()</code> → <code>await</code> → render pattern you'll see everywhere in web development.</p>
+
+<div class="callout callout-warning">
+  <strong>⚠️ Hallucination alert</strong>
+  Copilot might hallucinate API endpoints or parameters that don't exist. If the weather data isn't loading, check the <a href="https://open-meteo.com/en/docs">Open-Meteo documentation</a> to verify the actual API format. This is a real skill: verifying that generated API calls match reality.
+</div>
+
+<h3>Test it</h3>
+<ol>
+  <li>Search for your city. Does it show weather?</li>
+  <li>Search for a city that doesn't exist. Does it show an error gracefully?</li>
+  <li>Is the temperature in the right unit (°F or °C)?</li>
+  <li>Does the 5-day forecast look reasonable for your area?</li>
+</ol>
+
+<h3>Stretch goals</h3>
+<ul>
+  <li>Remember the last searched city (localStorage)</li>
+  <li>Add a "Use my location" button (geolocation API)</li>
+  <li>Show a loading spinner while fetching</li>
+</ul>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Deploy it</strong>: push to GitHub Pages</li>
+  <li><strong>Try a different API:</strong> Ask Copilot to help you swap to a different free API (like a quotes API or Pokémon API). Notice how the fetch pattern is the same even with different data.</li>
+  <li><strong>Think about MCP:</strong> Imagine if Copilot could call the weather API FOR you while chatting. That's MCP in action.</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>📖 Go deeper</strong>
+  Read: <a href="https://modelcontextprotocol.io/">Model Context Protocol: Official Site</a>: the official explanation of what MCP is and why it matters.
+</div>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week: <strong>Skills</strong>: reusable capabilities that extend what Copilot can do.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0004-agents-and-study-timer.html">← Previous: Agents</a>
+  <a href="0006-skills-and-weather-dashboard.html">Next: Skills + Finish Weather Dashboard →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

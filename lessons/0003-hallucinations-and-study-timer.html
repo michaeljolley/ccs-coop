@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3: Hallucinations + Build a Study Timer</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 3: Hallucinations + Build a Study Timer</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>3 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>When AI is confidently wrong (hallucinations)</dd>
+  <dt>Build:</dt><dd>A Pomodoro study timer with stats</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: Hallucinations (~30 minutes)</h2>
+
+<h3>A confident liar?</h3>
+<p>Last week you learned that an LLM predicts text. Here's the uncomfortable truth: <strong>it will predict confidently even when it's wrong</strong>. This is called a <strong>hallucination</strong>.</p>
+
+<p>Why? Because the LLM doesn't "know" things; it predicts likely text. If the most likely next words happen to be incorrect, it'll produce them with the same confidence as correct ones.</p>
+
+<div class="callout callout-warning">
+  <strong>⚠️ Real example</strong>
+  Ask Copilot to write a timer that counts down from 25 minutes. It might use <code>setInterval(fn, 1000)</code>, which fires every 1000 milliseconds (1 second). Seems right. But intervals can drift over time, and after 25 minutes, your timer might be off by several seconds. Copilot won't mention this unless you ask.
+</div>
+
+<h3>Why hallucinations happen</h3>
+<ul>
+  <li>The LLM has seen many examples of something and predicts the <em>most common</em> pattern, even if it doesn't apply here</li>
+  <li>It doesn't verify its own output; it can't "run" code in its head</li>
+  <li>It fills gaps with plausible-sounding text rather than saying "I don't know"</li>
+  <li>Rare or unusual patterns are where hallucinations are most likely</li>
+</ul>
+
+<h3>How to catch hallucinations</h3>
+<ol>
+  <li><strong>Test everything</strong>: run the code, check edge cases</li>
+  <li><strong>Ask "why?"</strong>: "Explain why you used setInterval here. Are there downsides?"</li>
+  <li><strong>Check the math</strong>: if it involves numbers, timing, or logic, verify manually</li>
+  <li><strong>Be skeptical of specifics</strong>: if it cites a library, API, or function name, check that it exists</li>
+  <li><strong>Try to break it</strong>: what happens at edge cases? (Timer at 0, negative numbers, etc.)</li>
+</ol>
+
+<div class="callout callout-tip">
+  <strong>💡 The mindset shift</strong>
+  Don't think of Copilot as "right or wrong." Think of it as a <strong>first draft</strong> that's often good but always needs review. Your job is editor, not audience.
+</div>
+
+<h3>Class activity: Spot the hallucination</h3>
+<p>Let's ask Copilot to do something with a known correct answer and see if it gets it right. We'll deliberately test edge cases where it's likely to slip.</p>
+
+<div class="quiz" data-answer="1">
+  <p class="quiz-question">Why do LLMs hallucinate?</p>
+  <span class="quiz-option">They're trying to deceive you on purpose               </span>
+  <span class="quiz-option">They predict likely text without verifying correctness  </span>
+  <span class="quiz-option">The internet contains incorrect information             </span>
+  <span class="quiz-option">They run out of memory and guess randomly               </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <p class="quiz-question">What's the BEST way to catch a hallucination in generated code?</p>
+  <span class="quiz-option">Read the code carefully for typos               </span>
+  <span class="quiz-option">Ask Copilot if the code is correct               </span>
+  <span class="quiz-option">Compare it to code on Stack Overflow             </span>
+  <span class="quiz-option">Run it and test edge cases to verify behavior    </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Build a Study Timer (~30 minutes)</h2>
+
+<p>A study timer (Pomodoro technique) is perfect for practicing hallucination-catching: timing logic has specific, verifiable behavior. You can <em>see</em> if it's wrong.</p>
+
+<h3>What you're building</h3>
+<ul>
+  <li>A countdown timer (25 min study, 5 min break)</li>
+  <li>Start, pause, and reset buttons</li>
+  <li>Saves completed sessions to localStorage (persists between page loads)</li>
+  <li>Shows total sessions completed today</li>
+</ul>
+
+<h3>Your prompt</h3>
+<p>Navigate to a new project folder and start a Copilot session:</p>
+<pre><code>mkdir ~/Documents/study-timer
+cd ~/Documents/study-timer
+copilot</code></pre>
+
+<p>Then describe your timer:</p>
+<pre><code>Create a Pomodoro study timer in a single HTML file called index.html:
+- 25-minute countdown that displays minutes:seconds
+- Start, Pause, and Reset buttons
+- When timer hits 0:00, show an alert and switch to 5-min break
+- Track completed sessions in localStorage
+- Show "Sessions today: X" counter
+- Clean, modern dark-theme styling</code></pre>
+
+<h3>Your mission: catch the hallucinations</h3>
+<p>After Copilot generates the code, specifically test:</p>
+<ol>
+  <li><strong>Does it count accurately?</strong>: Set it to 10 seconds and time it with your phone</li>
+  <li><strong>Does pause actually pause?</strong>: Pause it, wait, resume. Is the time correct?</li>
+  <li><strong>Does reset work mid-countdown?</strong></li>
+  <li><strong>Does localStorage persist?</strong>: Complete a session, refresh the page. Is the count still there?</li>
+  <li><strong>What happens if you click Start twice?</strong>: Does it speed up? (Common bug!)</li>
+</ol>
+
+<div class="callout callout-try">
+  <strong>🔍 Be the editor</strong>
+  When you find something wrong, tell Copilot exactly what you found: "When I click Start twice, the timer speeds up. It should ignore the second click if already running. Fix this."
+</div>
+
+<h3>Stretch: make it yours</h3>
+<p>If time allows, add one of:</p>
+<ul>
+  <li>A sound or notification when the timer ends</li>
+  <li>Custom time settings (not just 25/5)</li>
+  <li>A visual progress ring or bar</li>
+</ul>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Use your timer</strong> to actually study this week. You built it, you might as well use it!</li>
+  <li><strong>Find one more bug</strong>: try unusual interactions (rapid clicking, leaving the page open overnight) and fix what you find</li>
+  <li><strong>Deploy it</strong> to GitHub Pages if you haven't already</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>📖 Go deeper</strong>
+  Read: <a href="https://simonwillison.net/2024/Aug/14/hallucinations/">Hallucinations in AI: Simon Willison</a>: a clear, accessible explanation of why AI makes things up and what to do about it.
+</div>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week: What are <strong>agents</strong>, and how are they different from what we've been doing?
+</div>
+
+<nav class="lesson-nav">
+  <a href="0002-deploy-and-polish-your-game.html">← Previous: Prompting &amp; Context + Deploy Your Game</a>
+  <a href="0004-agents-and-study-timer.html">Next: Agents + Finish Study Timer →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

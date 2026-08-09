@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 7: Hooks + Build a Budget Tracker</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 7: Hooks + Build a Budget Tracker</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>7 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>Hooks: automating actions when events happen</dd>
+  <dt>Build:</dt><dd>A budget/expense tracker with charts</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: Hooks (~30 minutes)</h2>
+
+<h3>Events and reactions</h3>
+<p>Think about how your phone works:</p>
+<ul>
+  <li>You get a text → your phone buzzes (event → reaction)</li>
+  <li>You arrive at school → your phone silences itself (event → reaction)</li>
+  <li>It's 7am → your alarm goes off (event → reaction)</li>
+</ul>
+<p>This pattern, <strong>when something happens, automatically do something else</strong>, is called a <strong>hook</strong>.</p>
+
+<h3>What is a hook?</h3>
+<p>A hook is an automated reaction to an event. In the AI ecosystem:</p>
+<ul>
+  <li><strong>When code is committed</strong> → automatically run tests</li>
+  <li><strong>When a file is saved</strong> → automatically format it</li>
+  <li><strong>When a PR is opened</strong> → automatically review it</li>
+  <li><strong>When an error is detected</strong> → automatically suggest a fix</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Analogy</strong>
+  A hook is like a mousetrap: you set it up once, then it triggers automatically when the right condition occurs. You don't have to sit there watching for the mouse.
+</div>
+
+<h3>Hooks vs manual action</h3>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">Manual</th>
+      <th style="padding:0.5rem;">With Hook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">"Remember to run tests before pushing"</td>
+      <td style="padding:0.5rem;">Tests run automatically on every push</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">"Manually calculate my remaining budget"</td>
+      <td style="padding:0.5rem;">Budget recalculates when you add an expense</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;">"Check if my code has errors after editing"</td>
+      <td style="padding:0.5rem;">Errors highlighted instantly as you type</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Hooks in your apps</h3>
+<p>You've actually been using hook-like patterns already without knowing it:</p>
+<ul>
+  <li>Your game: <strong>when</strong> a player clicks → update the board</li>
+  <li>Your timer: <strong>when</strong> time hits zero → show alert and switch mode</li>
+  <li>Your weather app: <strong>when</strong> user submits a city → fetch and display data</li>
+</ul>
+<p>In JavaScript, <code>addEventListener</code> is literally setting up a hook: "when this event happens, run this code."</p>
+
+<h3>Hooks in the Copilot ecosystem</h3>
+<p>GitHub Copilot can use hooks to automate your development workflow:</p>
+<ul>
+  <li><strong>Pre-commit hooks:</strong> Check code quality before you commit</li>
+  <li><strong>On-save hooks:</strong> Format code every time you save a file</li>
+  <li><strong>CI/CD hooks:</strong> Deploy your site automatically when you push to GitHub</li>
+</ul>
+
+<div class="quiz" data-answer="0">
+  <p class="quiz-question">A "hook" in programming is best described as:</p>
+  <span class="quiz-option">An automated reaction triggered by a specific event </span>
+  <span class="quiz-option">A way to connect two different programming languages </span>
+  <span class="quiz-option">A security measure that blocks unauthorized access   </span>
+  <span class="quiz-option">A visual element that grabs the user's attention     </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Build a Budget Tracker (~30 minutes)</h2>
+
+<p>Your most data-rich app yet. It combines everything you've learned: events, localStorage, rendering data, and now, charts.</p>
+
+<h3>What you're building</h3>
+<ul>
+  <li>Add income and expenses with a category (food, transport, entertainment, etc.)</li>
+  <li>Running balance that updates <strong>automatically</strong> (a hook!) when you add a transaction</li>
+  <li>Simple bar or pie chart showing spending by category</li>
+  <li>All data saved to localStorage</li>
+  <li>Ability to delete entries</li>
+</ul>
+
+<h3>Your prompt</h3>
+<p>New project, new folder:</p>
+<pre><code>mkdir ~/Documents/budget-tracker
+cd ~/Documents/budget-tracker
+copilot</code></pre>
+
+<p>Describe your tracker:</p>
+<pre><code>Create a budget/expense tracker in a single HTML file called index.html:
+- Input form: amount, description, category (dropdown: Food, Transport, 
+  Entertainment, School, Other), and type (income/expense)
+- Transaction list showing all entries with delete buttons
+- Running balance at the top that recalculates automatically 
+  when entries are added or removed
+- A simple bar chart showing total spending per category 
+  (use canvas or inline SVG, no external libraries)
+- All data persisted in localStorage
+- Clean, modern styling with green for income, red for expenses</code></pre>
+
+<h3>Notice the hooks</h3>
+<p>As you build, identify the hooks (event → reaction) in your tracker:</p>
+<ul>
+  <li><strong>When</strong> "Add" is clicked → add to list, recalculate balance, update chart</li>
+  <li><strong>When</strong> "Delete" is clicked → remove from list, recalculate balance, update chart</li>
+  <li><strong>When</strong> page loads → load from localStorage, render everything</li>
+</ul>
+
+<div class="callout callout-try">
+  <strong>🔍 Test the chain</strong>
+  Add an expense → does the balance update? Does the chart update? Delete it → does everything revert? If not, you've found a bug in your hook chain. Tell Copilot exactly which reaction didn't fire.
+</div>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Track real expenses</strong> for a few days. Use your own app!</li>
+  <li><strong>Add a feature:</strong> monthly budget limit with a warning when you're close</li>
+  <li><strong>Deploy it</strong> to GitHub Pages</li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week we'll bring it all together: how LLMs, agents, MCP, skills, and hooks form one ecosystem.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0006-skills-and-weather-dashboard.html">← Previous: Skills</a>
+  <a href="0008-ecosystem-and-budget-tracker.html">Next: The Full Ecosystem →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

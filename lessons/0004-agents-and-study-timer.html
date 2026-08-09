@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 4: Agents + Finish Your Study Timer</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 4: Agents + Finish Your Study Timer</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>4 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>What are AI agents? How do they differ from chat?</dd>
+  <dt>Build:</dt><dd>Polish and extend your Study Timer</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: What Are Agents? (~30 minutes)</h2>
+
+<h3>Chat vs Agent</h3>
+<p>So far, you've been using Copilot as a <strong>chat</strong>: you ask, it answers, you apply the code manually. That's like texting a friend for advice and doing the work yourself.</p>
+
+<p>An <strong>agent</strong> is different. An agent can:</p>
+<ul>
+  <li><strong>Take actions</strong>: edit files, run commands, create new files</li>
+  <li><strong>Make decisions</strong>: decide what step to take next without asking you</li>
+  <li><strong>Use tools</strong>: run your code, read error messages, search the web</li>
+  <li><strong>Loop</strong>: try something, check if it worked, try again if not</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Analogy</strong>
+  <strong>Chat</strong> = you ask a chef for a recipe, then cook it yourself.<br>
+  <strong>Agent</strong> = you tell the chef what you want for dinner, and they go make it, choosing ingredients, adjusting seasoning, plating it.
+</div>
+
+<h3>The Agent Loop</h3>
+<p>An agent works in a loop:</p>
+<ol>
+  <li><strong>Observe</strong>: read files, see errors, understand the current state</li>
+  <li><strong>Think</strong>: decide what action to take next</li>
+  <li><strong>Act</strong>: edit a file, run a command, create something</li>
+  <li><strong>Check</strong>: did it work? If not, go back to step 1</li>
+</ol>
+
+<p>This is exactly what YOU have been doing manually: observe the bug, think about the fix, make the edit, test it. An agent automates this loop.</p>
+
+<h3>Agents in Copilot</h3>
+<p>Here's the surprise: <strong>the Copilot CLI is an agent</strong>. Every time you've described what you want and watched it create files, run commands, and deploy your apps. That was the agent loop in action. Instead of just chatting, it directly edits your files, runs terminal commands, and iterates on its own work. You're the <strong>supervisor</strong>, not the typist.</p>
+
+<h3>Asking vs tasking</h3>
+<p>Even with one tool, you interact in two different ways. Sometimes you <strong>ask</strong> (like a chat) and sometimes you <strong>task</strong> (like an agent):</p>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">You're asking when...</th>
+      <th style="padding:0.5rem;">You're tasking when...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">You want to understand something</td>
+      <td style="padding:0.5rem;">You want something built or fixed</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;">"Explain what localStorage does"</td>
+      <td style="padding:0.5rem;">"Add a stats dashboard to my timer"</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;">You want a single answer, no file changes</td>
+      <td style="padding:0.5rem;">The task involves editing files and multiple steps</td>
+    </tr>
+  </tbody>
+</table>
+<p>The Copilot CLI handles both. The difference is in how <em>you</em> phrase your request.</p>
+
+<div class="callout callout-warning">
+  <strong>⚠️ Agents still hallucinate</strong>
+  An agent is just an LLM in a loop. It can still be confidently wrong; it just does it faster and across more files. Always review what an agent does before accepting.
+</div>
+
+<div class="quiz" data-answer="2">
+  <p class="quiz-question">What makes the Copilot CLI an agent rather than just a chatbot?</p>
+  <span class="quiz-option">It is smarter and never makes mistakes             </span>
+  <span class="quiz-option">It answers questions but cannot edit any files      </span>
+  <span class="quiz-option">It can take actions and iterate on its own work     </span>
+  <span class="quiz-option">There is no real difference, just different names   </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Extend Your Study Timer (~30 minutes)</h2>
+
+<p>Today you'll <strong>task</strong> the Copilot CLI to add features to your study timer, giving it a goal and letting it make the edits while you supervise.</p>
+
+<h3>Be intentional about tasking</h3>
+<p>Good news: <strong>you've been working with an agent this whole time</strong>. The Copilot CLI is inherently agentic. It reads your files, edits them directly, and can run commands. When you've been typing descriptions and watching it create <code>index.html</code>, that's agent behavior.</p>
+
+<p>Today, let's be more intentional about it. Navigate to your study timer project:</p>
+<pre><code>cd ~/Documents/study-timer
+copilot</code></pre>
+
+<h3>Give the agent a task</h3>
+<p>Instead of describing code changes, give it a <strong>goal</strong>:</p>
+
+<pre><code>Add a statistics dashboard to my study timer. It should:
+- Show a bar chart of sessions completed each day this week
+- Display total focus minutes this week
+- Show current streak (consecutive days with at least 1 session)
+- Store all data in localStorage
+- Add it below the timer in the same page</code></pre>
+
+<h3>Your role: supervisor</h3>
+<p>Watch what Copilot does. It will:</p>
+<ul>
+  <li>Read your existing <code>index.html</code> to understand the structure</li>
+  <li>Make edits directly to the file</li>
+  <li>Possibly create additional files if needed</li>
+</ul>
+
+<p>After it's done:</p>
+<ol>
+  <li>Open <code>index.html</code> in your browser. Does it look right?</li>
+  <li>Test the stats. Do numbers add up?</li>
+  <li>If something's off, tell Copilot: "The bar chart isn't showing today's sessions. Fix it."</li>
+</ol>
+
+<div class="callout callout-try">
+  <strong>🔍 Compare the experience</strong>
+  Now that you know you've been working with an agent all along, think about the loop: you describe a goal → the agent observes your files → it makes edits → you check the result → you give feedback. That's the agent loop from Part 1!
+</div>
+
+<h3>Deploy your update</h3>
+<p>Ask Copilot to deploy it for you:</p>
+<pre><code>Deploy this to GitHub Pages. Create a public repo called study-timer, 
+push the code, enable Pages, and give me the URL.</code></pre>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Task the CLI</strong> to add one more feature to any of your projects</li>
+  <li><strong>Compare:</strong> Try asking a question ("explain how my timer works") vs giving a task ("add a pause sound"). Notice how the CLI responds differently.</li>
+  <li><strong>Reflect:</strong> When did you feel comfortable letting the agent work? When did you want more control?</li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week we'll learn about <strong>MCP</strong>: how AI connects to external tools and data. You'll build a weather app that pulls real data from the internet.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0003-hallucinations-and-study-timer.html">← Previous: Hallucinations</a>
+  <a href="0005-mcp-and-weather-dashboard.html">Next: MCP + Weather Dashboard →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

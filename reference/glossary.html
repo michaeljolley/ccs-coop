@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference: AI & Copilot Glossary</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>AI & Copilot Glossary</h1>
+<p><em>Key terms you'll encounter in this course. Print this out or keep it handy.</em></p>
+
+<h2>Core AI Concepts</h2>
+
+<dl>
+  <dt><strong>LLM (Large Language Model)</strong> <em>(Week 1)</em></dt>
+  <dd>A type of AI that predicts text. Given some input text, it predicts what should come next. Trained on massive amounts of human-written text and code. Examples: GPT-4, Claude, the models behind Copilot.</dd>
+
+  <dt><strong>Model</strong> <em>(Week 1)</em></dt>
+  <dd>A specific trained version of an AI system. Different models have different sizes, speeds, and specializations. Copilot uses code-specialized models.</dd>
+
+  <dt><strong>Prompt</strong> <em>(Week 2)</em></dt>
+  <dd>The text you give to an LLM to steer its predictions. Better prompts (more specific, more context) produce better output.</dd>
+
+  <dt><strong>Context / Context Window</strong> <em>(Week 2)</em></dt>
+  <dd>Everything the LLM can "see" when making predictions: your prompt, open files, chat history. Has a size limit; the model forgets anything outside the window.</dd>
+
+  <dt><strong>Hallucination</strong> <em>(Week 3)</em></dt>
+  <dd>When an LLM generates confident-sounding output that is factually wrong. Happens because it predicts likely text, not verified truth. Always test AI output.</dd>
+
+  <dt><strong>Token</strong></dt>
+  <dd>The basic unit of text an LLM processes, roughly 3/4 of a word. Context windows are measured in tokens (e.g., 128K tokens ≈ a short novel).</dd>
+</dl>
+
+<h2>Copilot Ecosystem</h2>
+
+<dl>
+  <dt><strong>Agent</strong> <em>(Week 4)</em></dt>
+  <dd>An LLM that can take actions (edit files, run commands) in an autonomous loop. Unlike chat, an agent acts and checks its own work rather than just giving you text to copy.</dd>
+
+  <dt><strong>MCP (Model Context Protocol)</strong> <em>(Week 5)</em></dt>
+  <dd>A standard protocol for connecting AI to external tools and data sources. Like Bluetooth for AI: one universal way to plug in any tool (weather APIs, databases, calendars, etc.).</dd>
+
+  <dt><strong>Skill</strong> <em>(Week 6)</em></dt>
+  <dd>A packaged set of instructions that gives an AI agent a specific reusable capability. Like an app on your phone: extends what the AI can do without rebuilding from scratch.</dd>
+
+  <dt><strong>Hook</strong> <em>(Week 7)</em></dt>
+  <dd>An automated action triggered by a specific event. "When X happens, automatically do Y." Examples: auto-format on save, auto-test on commit, auto-deploy on push.</dd>
+</dl>
+
+<h2>Web Development</h2>
+
+<dl>
+  <dt><strong>HTML (HyperText Markup Language)</strong></dt>
+  <dd>The structure/skeleton of a web page. Defines what elements exist: headings, paragraphs, buttons, images, links.</dd>
+
+  <dt><strong>CSS (Cascading Style Sheets)</strong></dt>
+  <dd>The visual styling of a web page. Defines how elements look: colors, sizes, fonts, layout, animations.</dd>
+
+  <dt><strong>JavaScript (JS)</strong></dt>
+  <dd>The programming language that makes web pages interactive. Handles logic: what happens when you click, calculations, data storage, API calls.</dd>
+
+  <dt><strong>API (Application Programming Interface)</strong></dt>
+  <dd>A way for programs to talk to each other over the internet. Your weather app calls a weather API to get data: it sends a request and gets structured data back.</dd>
+
+  <dt><strong>fetch()</strong></dt>
+  <dd>A JavaScript function that calls an API. Sends a request to a URL and returns the response. Used whenever your app needs external data.</dd>
+
+  <dt><strong>localStorage</strong></dt>
+  <dd>A browser feature that saves data on the user's computer. Persists between page loads: your timer remembers sessions, your tracker remembers expenses.</dd>
+
+  <dt><strong>DOM (Document Object Model)</strong></dt>
+  <dd>The browser's internal representation of your HTML page. JavaScript manipulates the DOM to update what users see without reloading the page.</dd>
+
+  <dt><strong>Event / Event Listener</strong></dt>
+  <dd>Something that happens (a click, a keypress, a timer firing) and code that runs in response. <code>addEventListener('click', fn)</code> = "when clicked, run this function."</dd>
+</dl>
+
+<h2>Tools & Workflow</h2>
+
+<dl>
+  <dt><strong>GitHub Copilot CLI</strong></dt>
+  <dd>The AI coding assistant you use in this course. Launched by typing <code>copilot</code> in your terminal. It chats with you, creates and edits files, and can run commands for you (like deploying to GitHub Pages). Installed via WinGet (Windows) or an install script (Mac).</dd>
+
+  <dt><strong>Terminal</strong></dt>
+  <dd>The text-based window where you type commands. Called Terminal on both Windows and Mac. Where you launch the Copilot CLI.</dd>
+
+  <dt><strong>Git</strong></dt>
+  <dd>Version control software that tracks changes to your code over time. Like "save points" in a video game: you can always go back.</dd>
+
+  <dt><strong>GitHub</strong></dt>
+  <dd>A website that stores your git repositories online. Also where Copilot, GitHub Pages, and collaboration features live.</dd>
+
+  <dt><strong>GitHub Pages</strong></dt>
+  <dd>Free web hosting from GitHub. Push your HTML/CSS/JS to a repo → get a live URL. Your apps live here.</dd>
+
+  <dt><strong>Repository (Repo)</strong></dt>
+  <dd>A project folder tracked by git. Contains your code, its history, and lives on GitHub.</dd>
+
+  <dt><strong>Commit</strong></dt>
+  <dd>A saved snapshot of your code at a point in time. Like pressing "save" but with a note about what changed.</dd>
+
+  <dt><strong>Push</strong></dt>
+  <dd>Upload your local commits to GitHub. After pushing, your live GitHub Pages site updates.</dd>
+</dl>
+
+</body>
+</html>

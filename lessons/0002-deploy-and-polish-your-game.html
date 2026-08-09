@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2: Prompting & Context + Deploy Your Game</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 2: Prompting & Context + Deploy Your Game</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>2 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>How prompts and context shape LLM output</dd>
+  <dt>Build:</dt><dd>Polish your game and deploy it to GitHub Pages</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: Prompting & Context (~30 minutes)</h2>
+
+<h3>What happened last week?</h3>
+<p>Some of you wrote a short prompt and got a decent game. Others wrote a longer prompt and got something even better. A few got something weird. Why? The answer is <strong>context</strong>.</p>
+
+<h3>The Context Window</h3>
+<p>Remember: an LLM predicts what comes next. But next <em>after what?</em> The "what" is called the <strong>context window</strong>: it's everything the model can "see" when making predictions.</p>
+
+<ul>
+  <li>Your prompt is part of the context</li>
+  <li>The current file you have open is part of the context</li>
+  <li>Previous messages in the chat are part of the context</li>
+  <li>The context window has a <strong>limit</strong>: the model can only hold so much at once</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Analogy</strong>
+  Imagine asking a friend to help you with homework, but they can only see the last 2 pages of your notebook. If the important info is on page 1, they can't use it. That's what a context window limit feels like to an LLM.
+</div>
+
+<h3>Why Prompting Matters</h3>
+<p>Your prompt is the <strong>steering wheel</strong>. A vague prompt gives the LLM too many possible "next words" to predict, so it picks something generic. A specific prompt narrows the possibilities down to what you actually want.</p>
+
+<h3>Prompt Engineering Patterns</h3>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">Pattern</th>
+      <th style="padding:0.5rem;">When to use</th>
+      <th style="padding:0.5rem;">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Be specific</strong></td>
+      <td style="padding:0.5rem;">Always</td>
+      <td style="padding:0.5rem;">"3x3 grid with X and O" not "a board game"</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Give examples</strong></td>
+      <td style="padding:0.5rem;">When you want a specific format</td>
+      <td style="padding:0.5rem;">"Format like: Player X wins! 🎉"</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Describe constraints</strong></td>
+      <td style="padding:0.5rem;">When you want to limit the output</td>
+      <td style="padding:0.5rem;">"Single HTML file, no external libraries"</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;"><strong>Iterate, don't restart</strong></td>
+      <td style="padding:0.5rem;">When output is close but not right</td>
+      <td style="padding:0.5rem;">"Good, but make the grid bigger and add hover effects"</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Context in practice</h3>
+<p>When you stay in the same Copilot session, earlier messages are still in context, so the model "remembers" what you built. When you close Copilot and start a fresh session, it forgets the conversation (though it can still read your files). This is why <strong>iterating in the same session</strong> works smoothly.</p>
+
+<div class="callout callout-try">
+  <strong>🧪 Class demo</strong>
+  Let's watch what happens when we give the same game prompt to Copilot with different levels of specificity. Watch how the output changes as we add more context.
+</div>
+
+<div class="quiz" data-answer="2">
+  <p class="quiz-question">What is the "context window" in an LLM?</p>
+  <span class="quiz-option">The terminal window where you type                   </span>
+  <span class="quiz-option">The amount of time the model takes to respond          </span>
+  <span class="quiz-option">All the text the model can see when making predictions </span>
+  <span class="quiz-option">The browser window where your app runs                 </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <p class="quiz-question">Why does a more specific prompt produce better results?</p>
+  <span class="quiz-option">It narrows the possible predictions to what you want</span>
+  <span class="quiz-option">The LLM tries harder when it detects more words     </span>
+  <span class="quiz-option">Specific prompts unlock a premium mode in Copilot   </span>
+  <span class="quiz-option">It forces the model to search the internet first    </span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Polish & Deploy (~30 minutes)</h2>
+
+<p>Now apply what you just learned. You'll use <strong>better prompting</strong> to improve your game, then put it live on the internet.</p>
+
+<h3>Improve with better prompts (15 min)</h3>
+<p>Open your terminal, navigate to your game folder, and start Copilot:</p>
+<pre><code>cd ~/Documents/my-game
+copilot</code></pre>
+
+<p>Using what you now know about context and prompting, ask for a specific improvement. Notice how referencing what already exists uses context effectively:</p>
+
+<pre><code>In my index.html, the game works but the win detection doesn't check 
+diagonal lines. Also add a hover effect on empty squares and make the 
+overall layout centered on the page with a max-width of 500px.</code></pre>
+
+<p>The Copilot CLI reads your files as context, so it already knows what's in <code>index.html</code> without you pasting it. You can also <code>@</code>-mention a file to point Copilot at it directly.</p>
+
+<h3>Deploy to GitHub Pages (15 min)</h3>
+<p>Here's the magic of the Copilot CLI: it can <strong>run commands for you</strong>. You don't need to memorize git commands. Just ask. In your Copilot session, type:</p>
+
+<pre><code>Deploy this project to GitHub Pages. Create a new public repository 
+called my-game, push my code, enable GitHub Pages, and tell me the URL.</code></pre>
+
+<p>Copilot will show you the commands it wants to run (git init, commit, create the repo, enable Pages) and ask for your approval before each step. Read what it's doing, approve, and watch it work.</p>
+
+<div class="callout callout-warning">
+  <strong>⚠️ If something goes wrong</strong>
+  If a step fails, Copilot usually explains the error and tries a fix. If it gets stuck, tell it what you see: "That gave an error saying [paste]. What now?" This is the same iteration loop; the error message is context that helps Copilot predict the fix.
+</div>
+
+<p>After a minute, visit your live URL: <code>https://yourusername.github.io/my-game/</code></p>
+
+<div class="callout callout-tip">
+  <strong>🎯 Today's Win</strong>
+  Share your live game URL with a classmate or text it to a friend. You built this. It's on the internet. That's real.
+</div>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Share your URL</strong> with at least one person, and ask for feedback</li>
+  <li><strong>Experiment with prompts:</strong> Try the same request worded 3 different ways. Notice how specificity changes the output.</li>
+  <li><strong>Read:</strong> <a href="https://docs.github.com/en/copilot/using-github-copilot/prompt-engineering-for-github-copilot">Prompt engineering for GitHub Copilot</a>: official guide with examples</li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Ask your instructor. Next week we'll talk about what happens when the LLM is <em>confidently wrong</em>, and build something where you can catch it.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0001-build-a-game-with-copilot.html">← Previous: LLMs + Build a Game</a>
+  <a href="0003-hallucinations-and-study-timer.html">Next: Hallucinations + Study Timer →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

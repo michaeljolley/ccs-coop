@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 6: Skills + Finish Weather Dashboard</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Lesson 6: Skills + Finish Weather Dashboard</h1>
+
+<dl class="lesson-meta">
+  <dt>Week:</dt><dd>6 of 9</dd>
+  <dt>Duration:</dt><dd>~60 minutes</dd>
+  <dt>Concept:</dt><dd>Skills: reusable capabilities that extend AI</dd>
+  <dt>Build:</dt><dd>Polish weather dashboard, add features</dd>
+</dl>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 1: CONCEPT (30 min)                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 1: Skills (~30 minutes)</h2>
+
+<h3>The building blocks problem</h3>
+<p>You've now built three apps. Each time, you had to describe what you wanted from scratch. What if you could teach Copilot a <em>reusable capability</em>, something it can do over and over without you re-explaining it?</p>
+
+<p>That's what a <strong>skill</strong> is.</p>
+
+<h3>What is a skill?</h3>
+<p>A skill is a <strong>packaged set of instructions</strong> that gives an AI agent a specific capability. Think of it as a recipe card you hand to a chef:</p>
+
+<ul>
+  <li>"Here's how to deploy to GitHub Pages" → a deployment skill</li>
+  <li>"Here's how to write unit tests for JavaScript" → a testing skill</li>
+  <li>"Here's how to create responsive CSS layouts" → a styling skill</li>
+  <li>"Here's how to review code for accessibility" → a review skill</li>
+</ul>
+
+<div class="callout callout-tip">
+  <strong>💡 Analogy</strong>
+  Skills are like apps on your phone. Your phone (the AI) can do basic things on its own, but each app (skill) gives it a specific new capability. You don't rebuild the camera app every time you take a photo. You just open it.
+</div>
+
+<h3>Skills in the Copilot ecosystem</h3>
+<p>In GitHub Copilot, skills can:</p>
+<ul>
+  <li><strong>Provide specialized knowledge</strong>: like knowing your project's coding standards</li>
+  <li><strong>Follow specific workflows</strong>: like always running tests after making changes</li>
+  <li><strong>Use specific tools</strong>: like knowing how to call a particular API</li>
+  <li><strong>Be shared</strong>: a skill that works for you can work for your whole team</li>
+</ul>
+
+<h3>How skills relate to what you know</h3>
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--color-border); text-align:left;">
+      <th style="padding:0.5rem;">Concept</th>
+      <th style="padding:0.5rem;">What it does</th>
+      <th style="padding:0.5rem;">Analogy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>LLM</strong> (Week 1)</td>
+      <td style="padding:0.5rem;">The brain that predicts text</td>
+      <td style="padding:0.5rem;">A person's brain</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>Agent</strong> (Week 4)</td>
+      <td style="padding:0.5rem;">An LLM that can take actions in a loop</td>
+      <td style="padding:0.5rem;">A person doing a task</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--color-border);">
+      <td style="padding:0.5rem;"><strong>MCP</strong> (Week 5)</td>
+      <td style="padding:0.5rem;">Connects the agent to external tools</td>
+      <td style="padding:0.5rem;">A person's phone/computer</td>
+    </tr>
+    <tr>
+      <td style="padding:0.5rem;"><strong>Skill</strong> (this week)</td>
+      <td style="padding:0.5rem;">A packaged capability the agent can use</td>
+      <td style="padding:0.5rem;">A specific app on the phone</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="quiz" data-answer="1">
+  <p class="quiz-question">A "skill" in the Copilot ecosystem is best described as:</p>
+  <span class="quiz-option">A programming language the AI learns automatically  </span>
+  <span class="quiz-option">A packaged set of instructions for a specific task  </span>
+  <span class="quiz-option">A way to make the LLM smarter permanently           </span>
+  <span class="quiz-option">A certification the user earns after completing tasks</span>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PART 2: BUILD (30 min)                     -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Part 2: Polish Your Weather Dashboard (~30 minutes)</h2>
+
+<p>Use this session to level up your weather app, and notice how you're building <em>your own skills</em> as a developer. Each pattern you learn (fetch data, handle errors, render results) is reusable across future projects.</p>
+
+<h3>Feature ideas: pick 1-2</h3>
+<ul>
+  <li><strong>Multiple cities:</strong> Save favorite cities and switch between them</li>
+  <li><strong>Unit toggle:</strong> Switch between °C and °F</li>
+  <li><strong>Hourly forecast:</strong> Show hour-by-hour for today</li>
+  <li><strong>Weather backgrounds:</strong> Change the page background based on conditions (sunny = yellow, rainy = grey)</li>
+  <li><strong>"Use my location" button:</strong> Auto-detect city using browser geolocation</li>
+</ul>
+
+<h3>Practice the skill mindset</h3>
+<p>As you build, notice patterns you're reusing:</p>
+<ul>
+  <li>Fetching data from an API → you did this last week</li>
+  <li>Saving to localStorage → you did this with the timer</li>
+  <li>Handling user input → you did this with the game</li>
+</ul>
+<p><em>You</em> are accumulating skills. Each project makes the next one faster.</p>
+
+<h3>Deploy</h3>
+<p>Ask Copilot to deploy it for you, just like you did with your game:</p>
+<pre><code>Deploy this to GitHub Pages. Create a public repo called weather-app, 
+push the code, enable Pages, and give me the URL.</code></pre>
+
+<h2>Between Sessions</h2>
+<ul>
+  <li><strong>Think about reuse:</strong> What patterns from your weather app could you reuse in a future project? (Hint: fetching data, displaying lists, error handling)</li>
+  <li><strong>Explore:</strong> Look at <a href="https://github.com/topics/mcp-server">MCP servers on GitHub</a>: browse what tools people are building for AI. You don't need to install anything, just explore.</li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Questions?</strong> Next week: <strong>Hooks</strong>: automating workflows with event-driven triggers.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0005-mcp-and-weather-dashboard.html">← Previous: MCP</a>
+  <a href="0007-hooks-and-budget-tracker.html">Next: Hooks + Budget Tracker →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
