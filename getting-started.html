@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started: Requirements &amp; Setup</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+
+<p class="no-print"><a href="./index.html">&larr; Back to course home</a></p>
+
+<h1>Getting Started</h1>
+
+<p><em>Everything you need to bring, install, and set up before Week 1. This is the standalone requirements and setup guide.</em></p>
+
+<p class="no-print"><a href="./course-requirements.pdf">Download this as a PDF</a> to print or share.</p>
+
+<h2>What you need</h2>
+<p>Bring these to the course. Everything listed is free.</p>
+
+<table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top; width:30%;"><strong>A laptop</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">Windows 10 or 11, or a Mac (macOS). You need to be able to install software on it. Chromebooks and iPads will not work for this course.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Internet</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">A reliable connection. Copilot and GitHub both run online.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><strong>A GitHub account</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">Free. You will create one in Step 1 below.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><strong>GitHub Copilot access</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">Free for students through GitHub Education. Set up in Step 2.</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--color-border);">
+    <td style="padding:0.5rem; vertical-align:top;"><strong>Two free tools</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">The GitHub Copilot CLI and Git. Installed in Steps 3 and 5.</td>
+  </tr>
+  <tr>
+    <td style="padding:0.5rem; vertical-align:top;"><strong>No experience</strong></td>
+    <td style="padding:0.5rem; vertical-align:top;">You do not need any coding or terminal experience. We teach the basics you need.</td>
+  </tr>
+</table>
+
+<div class="callout callout-warning">
+  <strong>⚠️ Start early</strong>
+  Student verification for Copilot can take 1 to 2 days. Do Steps 1 and 2 as soon as you can, not the night before class.
+</div>
+
+<p class="no-print"><em>Total setup time: about 20 minutes.</em></p>
+
+<div class="page-break"></div>
+
+<h2>Setup steps</h2>
+<p>Do these before your first class session, in order.</p>
+
+<h3>Step 1: Create a GitHub account</h3>
+<ol>
+  <li>Go to <a href="https://github.com/signup">github.com/signup</a></li>
+  <li>Sign up with your email (a personal email is fine)</li>
+  <li>Choose a username you're happy with, since it'll become part of your website URL (<code>yourusername.github.io</code>)</li>
+  <li>Verify your email</li>
+</ol>
+<p><em>Already have a GitHub account? Skip to Step 2.</em></p>
+
+<h3>Step 2: Get GitHub Copilot free access</h3>
+<p>GitHub Copilot is free for students through GitHub Education.</p>
+<ol>
+  <li>Go to <a href="https://education.github.com/benefits">education.github.com/benefits</a></li>
+  <li>Click "Get student benefits"</li>
+  <li>You'll need to verify you're a student (school email, student ID photo, or enrollment letter)</li>
+  <li>Approval usually takes a few minutes but can take up to a few days</li>
+</ol>
+
+<h3>Step 3: Install the GitHub Copilot CLI</h3>
+<p>This is the tool you'll use to build everything in this course. Pick the command for your computer.</p>
+<p><strong>Windows:</strong></p>
+<ol>
+  <li>Open Terminal (search "Terminal" in the Start menu)</li>
+  <li>Run: <code>winget install GitHub.Copilot</code></li>
+  <li>Close and reopen Terminal when it finishes</li>
+</ol>
+<p><strong>Mac:</strong></p>
+<ol>
+  <li>Open Terminal (press Cmd+Space, type "Terminal", press Enter)</li>
+  <li>Run: <code>curl -fsSL https://gh.io/copilot-install | bash</code></li>
+  <li>Close and reopen Terminal when it finishes</li>
+</ol>
+
+<div class="callout callout-tip">
+  <strong>Where's my terminal?</strong>
+  <strong>Windows:</strong> Search "Terminal" in the Start menu. &nbsp; <strong>Mac:</strong> Press Cmd+Space and type "Terminal".
+  <br><br>
+  <em>On older Windows 10 machines you may not see "Terminal." Search "PowerShell" instead, or install "Windows Terminal" free from the Microsoft Store. Any of these works the same for this course.</em>
+</div>
+
+<h3>Step 4: Launch and sign in</h3>
+<ol>
+  <li>Start the Copilot CLI by typing: <code>copilot</code></li>
+  <li>On first launch, type <code>/login</code> and press Enter</li>
+  <li>Follow the prompts to sign in with your GitHub account (it opens a browser)</li>
+  <li>Once signed in, you're ready to go!</li>
+</ol>
+
+<h3>Step 5: Install Git</h3>
+<p>Git tracks your code and is what the Copilot CLI uses behind the scenes to deploy your apps.</p>
+<ol>
+  <li>Go to <a href="https://git-scm.com/downloads">git-scm.com/downloads</a></li>
+  <li>Download and install for your system, keeping the default options</li>
+  <li><strong>Mac:</strong> You may already have it. Run <code>git --version</code> in Terminal to check</li>
+  <li>Verify: run <code>git --version</code> and you should see a version number</li>
+</ol>
+
+<h2>Verify everything works</h2>
+<p>Open your terminal and run <code>copilot</code>. Once it starts, type a simple request:</p>
+<pre><code>Say hello and tell me a programming joke</code></pre>
+<p>If Copilot responds, you're all set!</p>
+
+<div style="margin:1rem 0; padding:1rem; border:1px solid var(--color-border); border-radius:8px;">
+  <p><strong>Checklist:</strong></p>
+  <ul style="list-style:none; margin-left:0;">
+    <li>☐ GitHub account created and email verified</li>
+    <li>☐ GitHub Education benefits applied</li>
+    <li>☐ Typing <code>copilot</code> launches the tool</li>
+    <li>☐ You signed in with <code>/login</code> and got a response to a test message</li>
+    <li>☐ <code>git --version</code> shows a version number</li>
+  </ul>
+</div>
+
+<h2>Troubleshooting</h2>
+<ul>
+  <li><strong>"copilot is not recognized"</strong>: Close and reopen your terminal after installing. On Windows, you may need to restart your computer.</li>
+  <li><strong>"winget is not recognized" (Windows)</strong>: Update to the latest Windows, or install "App Installer" from the Microsoft Store, then try again.</li>
+  <li><strong>"Copilot access denied"</strong>: Make sure you ran <code>/login</code> and your Copilot access is active (check at github.com/settings/copilot).</li>
+  <li><strong>Education verification pending</strong>: You can still use the free Copilot tier while you wait. Everything in this course works with it.</li>
+  <li><strong>Stuck?</strong>: Bring your laptop to class 10 minutes early. We'll get you sorted.</li>
+</ul>
+
+<h2>Never used a terminal?</h2>
+<p>No problem. You only need a few commands for the whole course: <code>mkdir</code> (make a folder), <code>cd</code> (move into a folder), and <code>copilot</code> (start Copilot). The <code>~</code> symbol is a shortcut for your home folder.</p>
+<p>Work through the <a href="https://michaeljolley.github.io/ccs-coop/reference/terminal-basics.html">Terminal Basics reference card</a> before class and practice moving around with <code>cd</code>. It fits on one page.</p>
+
+<h2>Reference materials</h2>
+<p>Keep these open while you build. They're the quick-reference companions to the lessons.</p>
+<ul class="reference-links">
+  <li><a href="https://michaeljolley.github.io/ccs-coop/reference/terminal-basics.html">Terminal Basics</a></li>
+  <li><a href="https://michaeljolley.github.io/ccs-coop/reference/prompting-cheat-sheet.html">Prompting Cheat Sheet</a></li>
+  <li><a href="https://michaeljolley.github.io/ccs-coop/reference/glossary.html">Glossary</a></li>
+</ul>
+
+<div class="ask-teacher">
+  💬 <strong>Can't figure something out?</strong> Don't stress. Bring your laptop to the first class and we'll help you get set up. The important thing is that you tried.
+</div>
+
+</body>
+</html>

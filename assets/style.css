@@ -192,9 +192,12 @@ li { margin-bottom: 0.3rem; }
 /* Print styles */
 @media print {
   body { max-width: 100%; margin: 0; font-size: 12pt; }
-  .lesson-nav, .ask-teacher { display: none; }
+  .lesson-nav, .ask-teacher, .no-print { display: none; }
   a { color: var(--color-text); }
   a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: var(--color-muted); }
+  .page-break { break-after: page; page-break-after: always; }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  pre, table, .callout { break-inside: avoid; page-break-inside: avoid; }
 }
 
 /* Landing page (index.html) */
